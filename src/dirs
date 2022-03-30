@@ -1,0 +1,15 @@
+DIRS=\
+     staging \
+     buffer \
+     interactivity \
+     host \
+     propsheet \
+     propslib \
+     renderer \
+     server \
+     terminal \
+     testlist \
+     til \
+     tools \
+     tsf \
+     types \

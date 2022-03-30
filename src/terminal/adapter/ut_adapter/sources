@@ -1,0 +1,67 @@
+!include ..\sources.inc
+
+# -------------------------------------
+# Program Information
+# -------------------------------------
+
+TARGETNAME              = Microsoft.Console.VirtualTerminal.Adapter.UnitTests
+TARGETTYPE              = DYNLINK
+TARGET_DESTINATION      = UnitTests
+DLLDEF                  =
+
+UNIVERSAL_TEST          = 1
+TEST_CODE               = 1
+
+# -------------------------------------
+# Preprocessor Settings
+# -------------------------------------
+
+C_DEFINES               = $(C_DEFINES) -DINLINE_TEST_METHOD_MARKUP -DUNIT_TESTING
+
+# -------------------------------------
+# Sources, Headers, and Libraries
+# -------------------------------------
+
+SOURCES = \
+    $(SOURCES) \
+    adapterTest.cpp \
+    inputTest.cpp \
+    MouseInputTest.cpp \
+
+INCLUDES = \
+    $(INCLUDES); \
+    $(ONECORESDKTOOLS_INTERNAL_INC_PATH_L)\WexTest\Cue; \
+    $(ONECORESDKTOOLS_INTERNAL_INC_PATH_L)\wextest\cue; \
+
+TARGETLIBS = \
+    $(TARGETLIBS) \
+    $(ONECORESDKTOOLS_INTERNAL_LIB_PATH_L)\WexTest\Cue\Wex.Common.lib \
+    $(ONECORESDKTOOLS_INTERNAL_LIB_PATH_L)\WexTest\Cue\Wex.Logger.lib \
+    $(ONECORESDKTOOLS_INTERNAL_LIB_PATH_L)\WexTest\Cue\Te.Common.lib \
+    $(ONECORE_INTERNAL_SDK_LIB_PATH)\onecoreuuid.lib \
+    $(ONECOREUAP_INTERNAL_SDK_LIB_PATH)\onecoreuapuuid.lib \
+    $(ONECORE_INTERNAL_PRIV_SDK_LIB_VPATH_L)\onecore_internal.lib \
+    $(WINCORE_OBJ_PATH)\console\open\src\buffer\out\lib\$(O)\conbufferout.lib \
+    $(WINCORE_OBJ_PATH)\console\open\src\terminal\adapter\lib\$(O)\ConTermAdapter.lib \
+    $(WINCORE_OBJ_PATH)\console\open\src\terminal\input\lib\$(O)\ConTermInput.lib \
+    $(WINCORE_OBJ_PATH)\console\open\src\interactivity\base\lib\$(O)\ConInteractivityBaseLib.lib \
+    $(WINCORE_OBJ_PATH)\console\open\src\types\lib\$(O)\ConTypes.lib \
+
+DELAYLOAD = \
+    ext-ms-win-ntuser-keyboard-l1.dll; \
+
+DLOAD_ERROR_HANDLER = kernelbase
+
+#INCLUDES                        =   $(INCLUDES); \
+#                                    ..\..\..\inc; \
+#                                    $(SDKTOOLS_INC_PATH)\WexTest\Cue; \
+#
+#SOURCES                         =   $(SOURCES) \
+#
+#
+#TARGETLIBS                      =   $(TARGETLIBS) \
+#                                    $(ONECORESDKTOOLS_INTERNAL_LIB_PATH_L)\WexTest\Cue\Wex.Common.lib \
+#                                    $(ONECORESDKTOOLS_INTERNAL_LIB_PATH_L)\WexTest\Cue\Wex.Logger.lib \
+#                                    $(ONECORESDKTOOLS_INTERNAL_LIB_PATH_L)\WexTest\Cue\Te.Common.lib \
+#                                    $(SDKTOOLS_LIB_PATH)\WexTest\Cue\Mock10.lib \
+

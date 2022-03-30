@@ -1,0 +1,46 @@
+!include ..\sources.inc
+!include ..\..\..\project.unittest.inc
+
+# -------------------------------------
+# Program Information
+# -------------------------------------
+
+TARGETNAME              = Microsoft.Console.VirtualTerminal.Parser.UnitTests
+TARGETTYPE              = DYNLINK
+DLLDEF                  =
+
+# -------------------------------------
+# Preprocessor Settings
+# -------------------------------------
+
+C_DEFINES               = $(C_DEFINES) -DBUILD_ONECORE_INTERACTIVITY
+
+# -------------------------------------
+# Sources, Headers, and Libraries
+# -------------------------------------
+
+SOURCES = \
+    $(SOURCES) \
+    OutputEngineTest.cpp \
+    InputEngineTest.cpp \
+    StateMachineTest.cpp \
+    Base64Test.cpp \
+
+TARGETLIBS = \
+    $(TARGETLIBS) \
+    $(ONECORE_INTERNAL_SDK_LIB_PATH)\onecoreuuid.lib \
+    $(ONECOREUAP_INTERNAL_SDK_LIB_PATH)\onecoreuapuuid.lib \
+    $(ONECORE_INTERNAL_PRIV_SDK_LIB_VPATH_L)\onecore_internal.lib \
+    $(MINCORE_INTERNAL_PRIV_SDK_LIB_VPATH_L)\ext-ms-win-rtcore-ntuser-mouse-l1.lib \
+    $(CONSOLE_OBJ_PATH)\terminal\parser\lib\$(O)\ConTermParser.lib \
+    $(CONSOLE_OBJ_PATH)\terminal\input\lib\$(O)\ConTermInput.lib \
+    $(CONSOLE_OBJ_PATH)\interactivity\base\lib\$(O)\ConInteractivityBaseLib.lib \
+    $(CONSOLE_OBJ_PATH)\types\lib\$(O)\ConTypes.lib \
+
+
+DELAYLOAD = \
+    ext-ms-win-ntuser-keyboard-l1.dll; \
+    ext-ms-win-rtcore-ntuser-mouse-l1.dll; \
+
+DLOAD_ERROR_HANDLER = kernelbase
+
